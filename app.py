@@ -8,6 +8,7 @@ CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 
 
 @app.route('/upload', methods=['POST'])
+@cross_origin(origin='*')
 def upload():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
