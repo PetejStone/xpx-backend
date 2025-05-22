@@ -6,11 +6,12 @@ import os
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 
+@app.route('/')
+def home():
+    return jsonify({'message': 'Backend is running'})
 
 @app.route('/upload', methods=['POST'])
 @cross_origin(origin='*')
-def index():
-    return jsonify({'message': 'Backend is running'})
 def upload():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
